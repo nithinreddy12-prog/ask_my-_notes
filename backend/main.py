@@ -13,11 +13,9 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:5174",
-        "http://127.0.0.1:5174",
-    ],
+    "http://localhost:5173",
+    "https://ask-my-notes-1-n2oa.onrender.com",  # <-- Paste your frontend URL here
+],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
