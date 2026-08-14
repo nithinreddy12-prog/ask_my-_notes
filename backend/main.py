@@ -1,3 +1,4 @@
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -8,14 +9,17 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# React/Vite runs on port 5173.
-# FastAPI runs on port 8000.
+# Explicitly list all origin variations without trailing slashes
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://ask-my-notes-1-n2oa.onrender.com",
+    "http://ask-my-notes-1-n2oa.onrender.com",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-    "http://localhost:5173",
-    "https://ask-my-notes-1-n2oa.onrender.com",  # <-- Paste your frontend URL here
-],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -36,7 +40,6 @@ def home():
 def health_check():
     return {"status": "healthy"}
 
-# Route updated to /api/ask to match your frontend fetch request URL
 @app.post("/api/ask", response_model=QuestionResponse)
 def ask_question(request: QuestionRequest):
     cleaned_question = request.question.strip()
