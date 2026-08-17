@@ -14,7 +14,6 @@ origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "https://ask-my-notes-1-n2oa.onrender.com",
-    "http://ask-my-notes-1-n2oa.onrender.com",
 ]
 
 app.add_middleware(
@@ -24,7 +23,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 class QuestionRequest(BaseModel):
     question: str
 
