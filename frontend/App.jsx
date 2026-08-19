@@ -47,7 +47,7 @@ function App() {
 
       // Updated to your live Render backend URL:
 
-     const response = await fetch("https://my-new-backend-si35.onrender.com/api/ask", {
+     const response = await fetch("https://my-new-backend-si35.onrender.com/api/ask", {, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
